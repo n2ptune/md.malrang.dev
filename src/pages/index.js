@@ -5,5 +5,5 @@ const Wrapper = styled.div`
 `
 
 export default function Home() {
-  return <Wrapper>Hello Markdown World</Wrapper>
+  return <Wrapper>Main Page</Wrapper>
 }
