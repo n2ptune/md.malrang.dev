@@ -4,12 +4,17 @@ import Markdown from 'react-markdown'
 import 'github-markdown-css'
 import AiOutlineDoubleRight from '@ant-design/icons/DoubleRightOutlined'
 import AiOutlineDoubleLeft from '@ant-design/icons/DoubleLeftOutlined'
+import Link from 'next/link'
 
 const Wrapper = styled.section`
   max-width: 800px;
   display: block;
   margin: 0 auto;
   padding: 5rem 0;
+
+  @media screen and (max-width: 768px) {
+    padding: 5rem 1rem;
+  }
 `
 
 const iconCSS = `
@@ -39,8 +44,16 @@ const LeftIcon = styled(AiOutlineDoubleLeft)`
 export default function Content(props) {
   return (
     <Wrapper>
-      {props.isPrev && <LeftIcon />}
-      {props.isNext && <RightIcon />}
+      {props.isPrev && (
+        <Link href={`/contents/${props.isPrev}`}>
+          <LeftIcon />
+        </Link>
+      )}
+      {props.isNext && (
+        <Link href={`/contents/${props.isNext}`}>
+          <RightIcon />
+        </Link>
+      )}
       <Markdown className="markdown-body">{props.content.md.content}</Markdown>
     </Wrapper>
   )
