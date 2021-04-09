@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { getAllContents } from './api'
 import Link from 'next/link'
+import AppLayout from '@/components/layout'
 
 const Wrapper = styled.div`
   font-size: 1.25rem;
@@ -14,17 +15,19 @@ const StyledLink = styled.a`
 
 export default function Home({ contents }) {
   return (
-    <Wrapper>
-      <ul>
-        {contents.map((content) => (
-          <Link href={`/contents/${content.fileName}`} key={content.fileName}>
-            <li>
-              <StyledLink href="">{content.title}</StyledLink>
-            </li>
-          </Link>
-        ))}
-      </ul>
-    </Wrapper>
+    <AppLayout title="리스트">
+      <Wrapper>
+        <ul>
+          {contents.map((content) => (
+            <Link href={`/contents/${content.fileName}`} key={content.fileName}>
+              <li>
+                <StyledLink href="">{content.title}</StyledLink>
+              </li>
+            </Link>
+          ))}
+        </ul>
+      </Wrapper>
+    </AppLayout>
   )
 }
 
