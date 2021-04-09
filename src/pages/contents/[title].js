@@ -5,6 +5,7 @@ import 'github-markdown-css'
 import AiOutlineDoubleRight from '@ant-design/icons/DoubleRightOutlined'
 import AiOutlineDoubleLeft from '@ant-design/icons/DoubleLeftOutlined'
 import Link from 'next/link'
+import AppLayout from '@/components/layout'
 
 const Wrapper = styled.section`
   max-width: 800px;
@@ -43,19 +44,23 @@ const LeftIcon = styled(AiOutlineDoubleLeft)`
 
 export default function Content(props) {
   return (
-    <Wrapper>
-      {props.isPrev && (
-        <Link href={`/contents/${props.isPrev}`}>
-          <LeftIcon />
-        </Link>
-      )}
-      {props.isNext && (
-        <Link href={`/contents/${props.isNext}`}>
-          <RightIcon />
-        </Link>
-      )}
-      <Markdown className="markdown-body">{props.content.md.content}</Markdown>
-    </Wrapper>
+    <AppLayout title={props.content.md.data.title}>
+      <Wrapper>
+        {props.isPrev && (
+          <Link href={`/contents/${props.isPrev}`}>
+            <LeftIcon />
+          </Link>
+        )}
+        {props.isNext && (
+          <Link href={`/contents/${props.isNext}`}>
+            <RightIcon />
+          </Link>
+        )}
+        <Markdown className="markdown-body">
+          {props.content.md.content}
+        </Markdown>
+      </Wrapper>
+    </AppLayout>
   )
 }
 

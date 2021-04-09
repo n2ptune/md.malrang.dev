@@ -33,11 +33,16 @@ export const getContentByFileName = (fileName) => {
 
   if (target) {
     const md = matter(
-      fs.readFileSync(path.join(postsDirectory, fileName + '.md'), 'utf8')
+      fs.readFileSync(path.join(postsDirectory, fileName + '.md'), 'utf8'),
+      {
+        excerpt: true,
+        excerpt_separator: '\n'
+      }
     )
     const transformMd = {
       content: md.content,
-      data: md.data
+      data: md.data,
+      excerpt: md.excerpt
     }
     return {
       md: transformMd,
