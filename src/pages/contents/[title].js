@@ -61,6 +61,7 @@ export default function Content(props) {
           className="markdown-body"
           children={props.content.md.content}
           plugins={[gfm]}
+          allowDangerousHtml
         />
       </Wrapper>
     </AppLayout>
