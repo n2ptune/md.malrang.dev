@@ -44,6 +44,7 @@ export const getContentByFileName = (fileName) => {
       data: md.data,
       excerpt: md.excerpt
     }
+    console.log(transformMd)
     return {
       md: transformMd,
       fileName

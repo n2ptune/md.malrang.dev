@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { getAllContents, getContentByFileName } from '@/pages/api'
 import Markdown from 'react-markdown'
+import gfm from 'remark-gfm'
 import 'github-markdown-css'
 import AiOutlineDoubleRight from '@ant-design/icons/DoubleRightOutlined'
 import AiOutlineDoubleLeft from '@ant-design/icons/DoubleLeftOutlined'
@@ -56,9 +57,11 @@ export default function Content(props) {
             <RightIcon />
           </Link>
         )}
-        <Markdown className="markdown-body">
-          {props.content.md.content}
-        </Markdown>
+        <Markdown
+          className="markdown-body"
+          children={props.content.md.content}
+          plugins={[gfm]}
+        />
       </Wrapper>
     </AppLayout>
   )
