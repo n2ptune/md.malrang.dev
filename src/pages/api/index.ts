@@ -1,6 +1,8 @@
 import matter from 'gray-matter'
 import path from 'path'
 import fs from 'fs'
+import remark from 'remark'
+import strip from 'strip-markdown'
 
 export const getAllContents = () => {
   const postsDirectory = path.join(process.cwd(), 'src/contents')
@@ -35,10 +37,10 @@ export const getContentByFileName = (fileName) => {
     const md = matter(
       fs.readFileSync(path.join(postsDirectory, fileName + '.md'), 'utf8'),
       {
-        excerpt: true,
-        excerpt_separator: '\n'
+        excerpt: true
       }
     )
+    const d = remark().use(strip).processSync(md.content)
     const transformMd = {
       content: md.content,
       data: md.data,
